@@ -1,0 +1,44 @@
+﻿@using DAL.Models;
+@model IQueryable<Provider>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Orders List</h1>
+
+<div class="container shadow p-5">
+
+    <div class="col mb-3">
+        <a asp-controller="Provider" asp-action="Create" class="btn btn-lg btn-primary"><i class="bi bi-file-plus-fill"></i>Create Order</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Provider Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="20%">
+                        @item.Id
+                    </td>
+                    <td width="20%">
+                        @item.Name
+                    </td>
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="Provider" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a asp-controller="Provider" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>                       
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
